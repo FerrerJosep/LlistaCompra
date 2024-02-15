@@ -1,13 +1,15 @@
 import express from 'express';
 
 import FruitsController from './controllers/frutes_controller.js';
+import ClientsController from './controllers/client_controller.js';
 import {frutes, getFruit, addFruit} from './models/frutes.js';
+import {clients, getClient, addClient} from './models/clients.js'
 
 // La biblioteca bodyParser es un módulo commonJS y no
 // soporta import { urlencoded, json } from 'body-parser';
 // Debemos hacerlo así
 import bodyParser from 'body-parser';
-import ClientsController from './controllers/client_controller.js';
+
 const { urlencoded, json } = bodyParser;
 
 // Definimos app como una aplicación express, utilizando el método 
@@ -44,18 +46,6 @@ app.get('/', function (req, res) {
     res.send('Bienvenido al servidor');
 });
 
-
-app.get('/saludo', function (req, res) {
-    res.send(`<html>
-    <head>
-        <title>Bienvenido al servidor</title>
-    </head>
-    <body>
-        <h1>Hola! Bienvenido al servidor</h1>
-    </body>
-</html>`);
-});
-
 app.post('/api/frutes', function(req, res) {
 
     let nombre = req.body.nombre || null;
@@ -66,10 +56,6 @@ app.post('/api/frutes', function(req, res) {
 
     res.send(response);
 
-});
-
-app.get("/llista", function(req, res){
-    res.send("Llista frutes")
 });
 
 app.get("/info", function (req, res) {
@@ -111,6 +97,7 @@ router.get('/', FruitsController.DefaultController)
 app.use("/api/frutes", router);
 
 
+routerClient.get('/:nombre?', ClientsController.ObtenirNomsClientController);
 routerClient.post('/', ClientsController.ObtenirDadesClientsPost);
 routerClient.put('/', ClientsController.AfegirClient);
 routerClient.get('/', ClientsController.DefaultController)

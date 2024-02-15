@@ -40,15 +40,17 @@ export default class FruitsController {
         let fruit_name = req.body.fruit_name || null;
         let size = req.body.size || null;
         let color = req.body.color || null;
+        let productor=req.body.major_producer || null;
 
         console.log(fruit_name);
         console.log(size);
         console.log(color)
+        console.log(productor);
 
         let response;
 
         if (fruit_name && size && color) {
-            addFruit(fruit_name, size, color);
+            addFruit(fruit_name, size, color, productor);
             response = { "status": "ok" }
         } else response = { "status": "error", "errorMsg": "Undefined Data" };
 

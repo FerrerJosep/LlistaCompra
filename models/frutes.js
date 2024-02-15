@@ -1,53 +1,64 @@
 export let frutes = [{
     "fruit_name": "Apple",
     "size": "Large",
-    "color": "Red"
+    "color": "Red",
+    "major_producer": "China"
 }, {
     "fruit_name": "Banana",
     "size": "Medium",
-    "color": "Yellow"
+    "color": "Yellow",
+    "major_producer": "India"
 },
 {
     "fruit_name": "Orange",
     "size": "Medium",
-    "color": "Orange"
+    "color": "Orange",
+    "major_producer": "Brazil"
 },
 {
     "fruit_name": "Grapes",
     "size": "Small",
-    "color": "Green"
+    "color": "Green",
+    "major_producer": "Italy"
 },
 {
     "fruit_name": "Strawberry",
     "size": "Small",
-    "color": "Red"
+    "color": "Red",
+    "major_producer": "United States"
 },
 {
     "fruit_name": "Pineapple",
     "size": "Large",
-    "color": "Yellow"
+    "color": "Yellow",
+    "major_producer": "Costa Rica"
 },
 {
     "fruit_name": "Watermelon",
     "size": "Large",
-    "color": "Green"
+    "color": "Green",
+    "major_producer": "China"
 },
 {
     "fruit_name": "Peach",
     "size": "Medium",
-    "color": "Orange"
+    "color": "Orange",
+    "major_producer": "China"
 },
 {
     "fruit_name": "Pear",
     "size": "Medium",
-    "color": "Yellow"
+    "color": "Yellow",
+    "major_producer": "China"
 },
 {
     "fruit_name": "Plum",
     "size": "Small",
-    "color": "Purple"
-}
-]
+    "color": "Purple",
+    "major_producer": "China"
+}];
+
+
 
 export function getFruit(nom) {
     for (let fruit of frutes) {

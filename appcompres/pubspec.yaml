@@ -91,5 +91,12 @@ flutter:
   # see https://flutter.dev/custom-fonts/#from-packages
   assets:
     - assets/apple.png
-    - assets/banana.webp
-    - assets/orange.webp
+    - assets/banana.png
+    - assets/orange.png
+    - assets/grapes.png
+    - assets/strawberry.png
+    - assets/watermelon.png
+    - assets/pineapple.png
+    - assets/peach.png
+    - assets/pear.png
+    - assets/plum.png

@@ -1,4 +1,4 @@
-import {addClient, getClient} from "../models/clients.js";
+import { clients, getClient, addClient } from "../models/clients.js";
 
 
 export default class  ClientsController{
@@ -17,6 +17,27 @@ export default class  ClientsController{
         res.send(response);
 
 
+    }
+    static ObtenirNomsClientController(req, res) {
+        let lista = []
+        let response;
+        let type = "application/json";
+        let status;
+        if (typeof (req.params.nombre) === typeof (undefined) && typeof (req.query.nombre) === typeof (undefined)) {
+            for (let client of clients) { lista.push(client.client_name); }
+            response = { "status": "ok", "data": lista };
+            status = 200;
+        } else {
+            let nombre;
+            if (typeof (req.params.nombre) !== typeof (undefined)) nombre = req.params.nombre;
+            else nombre = req.query.nombre;
+
+            response = getClient(nombre)
+            if (!response) response = { "status": "error", "msg": "Client not Found" };
+        }
+        res.type = type;
+        res.status = status;
+        res.send(response)
     }
 
     static ObtenirDadesClientsPost(req, res) {
