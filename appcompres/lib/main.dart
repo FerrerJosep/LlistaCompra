@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'login.dart';
+import 'details.dart'; // Importa la clase DetailPage del archivo details.dart
 
 void main() {
   runApp(MaterialApp(
+    debugShowCheckedModeBanner: false,
     title: 'My App',
     initialRoute: '/',
     routes: {
@@ -24,7 +26,7 @@ class _TabNavigatorState extends State<TabNavigator> {
 
   static List<Widget> _widgetOptions = <Widget>[
     HomePage(),
-    OtherPage(), 
+    OtherPage(),
   ];
 
   void _onItemTapped(int index) {
@@ -37,7 +39,52 @@ class _TabNavigatorState extends State<TabNavigator> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Catalogo: '),
+        actionsIconTheme:
+            IconThemeData(size: 30.0, color: Colors.black, opacity: 10.0),
+        actions: [
+          Padding(
+              padding: EdgeInsets.only(right: 20.0),
+              child: GestureDetector(
+                onTap: () {},
+                child: Icon(Icons.more_vert),
+              )),
+          Padding(
+              padding: EdgeInsets.only(right: 20.0),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, '/');
+                },
+                child: Icon(Icons.logout_rounded),
+              )),
+        ],
+        backgroundColor: Colors.grey.shade500,
+        leading: GestureDetector(
+          onTap: () {
+            showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  title: const Text('llistaCompra'),
+                  content: const Text('Josep Ferrer'),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: const Text('OK'),
+                    ),
+                  ],
+                );
+              },
+            );
+          },
+          child: Icon(
+            Icons.help_outline_rounded,
+          ),
+        ),
+        title: const Text(
+          'Login',
+        ),
       ),
       body: _widgetOptions.elementAt(_selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
@@ -66,6 +113,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List<String> fruits = [];
+  PurchaseController purchaseController = PurchaseController(); // Instancia del controlador de compras
 
   @override
   void initState() {
@@ -105,23 +153,28 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: ListView.builder(
-        itemCount: fruits.length,
-        itemBuilder: (context, index) {
-          return FruitButton(
-            fruitName: fruits[index],
-          );
-        },
+    return GridView.builder(
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount:  4, // Cambiar el número de columnas aquí según lo necesites
+        crossAxisSpacing: 10,
+        mainAxisSpacing: 10,
       ),
+      itemCount: fruits.length,
+      itemBuilder: (context, index) {
+        return FruitButton(
+          fruitName: fruits[index],
+          purchaseController: purchaseController, // Pasa el controlador de compras a FruitButton
+        );
+      },
     );
   }
 }
 
 class FruitButton extends StatelessWidget {
   final String fruitName;
+  final PurchaseController purchaseController; // Añade el controlador de compras como argumento
 
-  FruitButton({required this.fruitName});
+  FruitButton({required this.fruitName, required this.purchaseController}); // Actualiza el constructor
 
   @override
   Widget build(BuildContext context) {
@@ -140,7 +193,10 @@ class FruitButton extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => DetailPage(fruitData: fruitData),
+                builder: (context) => DetailPage(
+                  fruitData: fruitData,
+                  purchaseController: purchaseController, // Pasa el controlador de compras a DetailPage
+                ),
               ),
             );
           } else {
@@ -165,36 +221,10 @@ class FruitButton extends StatelessWidget {
         },
         icon: Image.asset(
           'assets/$imageName.png',
-          width: 50,
-          height: 50,
+          width: 100,
+          height: 100,
         ),
-        label: Text(fruitName),
-      ),
-    );
-  }
-}
-
-class DetailPage extends StatelessWidget {
-  final Map<String, dynamic> fruitData;
-
-  DetailPage({required this.fruitData});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Detail Page'),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text('Fruit Name: ${fruitData['fruit_name']}'),
-            Text('Size: ${fruitData['size']}'),
-            Text('Color: ${fruitData['color']}'),
-            Text('Producer: ${fruitData['major_producer']}'),
-          ],
-        ),
+        label: const Text(""),
       ),
     );
   }

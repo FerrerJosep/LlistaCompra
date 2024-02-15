@@ -100,3 +100,10 @@ flutter:
     - assets/peach.png
     - assets/pear.png
     - assets/plum.png
+  fonts:
+  
+    - family: Heavitas
+      fonts:
+        - asset: fonts/Heavitas.ttf
+       
+
