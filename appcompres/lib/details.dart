@@ -104,7 +104,8 @@ class _DetailPageState extends State<DetailPage> {
             Text('Total de frutas compradas:'),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: widget.purchaseController.fruitsPurchased.entries.map((entry) {
+              children: widget.purchaseController.fruitsPurchased.entries
+                  .map((entry) {
                 return Text('${entry.key}: ${entry.value}');
               }).toList(),
             ),

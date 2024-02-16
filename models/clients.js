@@ -19,7 +19,7 @@ export function getClient(nom) {
 
 
 export function addClient(name, age, email) {
-    frutes.push({
+    clients.push({
         "client_name": name,
         "client_age": age,
         "client_email": email

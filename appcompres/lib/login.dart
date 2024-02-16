@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
+import 'registro.dart';
+
 class Login extends StatefulWidget {
   @override
   _LoginState createState() => _LoginState();
@@ -129,6 +131,15 @@ class _LoginState extends State<Login> {
                     }
                   },
                   child: const Text('Iniciar sesión'),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Registro()),
+                    );
+                  },
+                  child: const Text('Registrarse'),
                 ),
               ],
             ),

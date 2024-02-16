@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'login.dart';
-import 'details.dart'; // Importa la clase DetailPage del archivo details.dart
+import 'details.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -113,7 +113,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List<String> fruits = [];
-  PurchaseController purchaseController = PurchaseController(); // Instancia del controlador de compras
+  PurchaseController purchaseController =
+      PurchaseController(); // Instancia del controlador de compras
 
   @override
   void initState() {
@@ -155,7 +156,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return GridView.builder(
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount:  4, // Cambiar el número de columnas aquí según lo necesites
+        crossAxisCount: 4,
         crossAxisSpacing: 10,
         mainAxisSpacing: 10,
       ),
@@ -163,7 +164,8 @@ class _HomePageState extends State<HomePage> {
       itemBuilder: (context, index) {
         return FruitButton(
           fruitName: fruits[index],
-          purchaseController: purchaseController, // Pasa el controlador de compras a FruitButton
+          purchaseController:
+              purchaseController, // Pasa el controlador de compras a FruitButton
         );
       },
     );
@@ -172,9 +174,12 @@ class _HomePageState extends State<HomePage> {
 
 class FruitButton extends StatelessWidget {
   final String fruitName;
-  final PurchaseController purchaseController; // Añade el controlador de compras como argumento
+  final PurchaseController
+      purchaseController; // Añade el controlador de compras como argumento
 
-  FruitButton({required this.fruitName, required this.purchaseController}); // Actualiza el constructor
+  FruitButton(
+      {required this.fruitName,
+      required this.purchaseController}); // Actualiza el constructor
 
   @override
   Widget build(BuildContext context) {
@@ -195,7 +200,8 @@ class FruitButton extends StatelessWidget {
               MaterialPageRoute(
                 builder: (context) => DetailPage(
                   fruitData: fruitData,
-                  purchaseController: purchaseController, // Pasa el controlador de compras a DetailPage
+                  purchaseController:
+                      purchaseController, // Pasa el controlador de compras a DetailPage
                 ),
               ),
             );
