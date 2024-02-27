@@ -1,4 +1,4 @@
-import { clients, getClient, addClient } from "../models/clients.js";
+import { clients, getClient, addClient, addClientName } from "../models/clients.js";
 
 
 export default class ClientsController {
@@ -18,6 +18,20 @@ export default class ClientsController {
 
 
     }
+    static AfegirClientName(req, res){
+        let client_name=req.params.nombre;
+    
+        let response;
+    
+        if(client_name){
+            addClientName(client_name); // Utiliza la función addClientName para añadir solo el nombre del cliente
+            response={"status": "ok"}
+        } else response = { "status": "error", "errorMsg": "Undefined Data" };
+    
+        res.send(response)
+    }
+    
+    
     static ObtenirNomsClientController(req, res) {
         let lista = []
         let response;

@@ -17,7 +17,13 @@ export function getClient(nom) {
     return null;
 }
 
-
+export function addClientName(name) {
+    clients.push({
+      "client_name": name
+    });
+    return { "status": "ok", "message": "Client name added." };
+  }
+  
 export function addClient(name, age, email) {
     clients.push({
         "client_name": name,

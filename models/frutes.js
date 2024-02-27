@@ -56,7 +56,32 @@ export let frutes = [{
     "size": "Small",
     "color": "Purple",
     "major_producer": "China"
-}];
+},
+{
+    "fruit_name": "Mango",
+    "size": "Medium",
+    "color": "Orange",
+    "major_producer": "India"
+},
+{
+    "fruit_name": "Cherry",
+    "size": "Small",
+    "color": "Red",
+    "major_producer": "United States"
+},
+{
+    "fruit_name": "Lemon",
+    "size": "Small",
+    "color": "Yellow",
+    "major_producer": "Spain"
+},
+{
+    "fruit_name": "Kiwi",
+    "size": "Small",
+    "color": "Green",
+    "major_producer": "New Zealand"
+}]
+;
 
 
 

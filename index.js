@@ -102,6 +102,8 @@ routerClient.post('/', ClientsController.ObtenirDadesClientsPost);
 routerClient.put('/', ClientsController.AfegirClient);
 routerClient.get('/', ClientsController.DefaultController)
 
+routerClient.post('/add/:nombre?', ClientsController.AfegirClientName);
+
 app.use("/api/clients", routerClient);
 
 //Metode que cobreix totes les rutes, sempre al final
